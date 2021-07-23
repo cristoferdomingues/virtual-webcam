@@ -1,20 +1,22 @@
 import { ShaderRenderer } from './shader-renderer.js';
-
+import { PosenetRenderer } from './posenet-renderer.js';
 class FilterStream {
   constructor(stream, shader) {
-    console.log("New Filter for stream", stream);
+    console.log('New Filter for stream', stream);
     this.stream = stream;
-    const video = document.createElement("video");
-    const canvas = document.createElement("canvas");
+    const video = document.createElement('video');
+    const canvas = document.createElement('canvas');
     this.canvas = canvas;
     this.renderer = new ShaderRenderer(this.canvas, video, shader);
+    //this.renderer = new PosenetRenderer(this.canvas, video);
 
-    video.addEventListener("playing", () => {
+    video.addEventListener('playing', () => {
       // Use a 2D Canvas.
       // this.canvas.width = this.video.videoWidth;
       // this.canvas.height = this.video.videoHeight;
 
       // Use a WebGL Renderer.
+      console.log('playing')
       this.renderer.setSize(this.video.videoWidth, this.video.videoHeight);
       this.update();
     });
@@ -39,4 +41,4 @@ class FilterStream {
   }
 }
 
-export { FilterStream }
+export { FilterStream };
